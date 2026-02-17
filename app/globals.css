@@ -17,9 +17,9 @@
   --color-black: var(--black);
   --color-white: var(--white);
 
-  --font-heading: var(--font-stick);
-  --font-hero: var(--font-stick);
-  --font-body: var(--font-nunito);
+  --font-heading: var(--font-troubleside);
+  --font-hero: var(--font-troubleside);
+  --font-body: var(--font-neucha);
 }
 
 /* Grain noise SVG filter */

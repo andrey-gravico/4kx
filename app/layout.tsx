@@ -1,19 +1,19 @@
 import type { Metadata } from 'next';
-import { Stick, Nunito } from 'next/font/google';
+import localFont from 'next/font/local';
+import { Neucha } from 'next/font/google';
 import './globals.css';
 import ScrollProgress from '@/components/ScrollProgress';
 
-const stick = Stick({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-stick',
+const troubleside = localFont({
+  src: '../public/fonts/troubleside.woff2',
+  variable: '--font-troubleside',
   display: 'swap',
 });
 
-const nunito = Nunito({
-  weight: ['400', '700', '800'],
+const neucha = Neucha({
+  weight: '400',
   subsets: ['latin', 'cyrillic'],
-  variable: '--font-nunito',
+  variable: '--font-neucha',
   display: 'swap',
 });
 
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body
-        className={`${stick.variable} ${nunito.variable} antialiased`}
+        className={`${troubleside.variable} ${neucha.variable} antialiased`}
       >
         <ScrollProgress />
         {children}

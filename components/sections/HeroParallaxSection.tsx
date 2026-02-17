@@ -4,8 +4,6 @@ import { useRef, useState, useCallback, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { usePointerParallax } from '@/lib/hooks/usePointerParallax';
 import { useTiltParallax, requestTiltPermission } from '@/lib/hooks/useTiltParallax';
-import HeroTitleBlock from '@/components/sections/HeroTitleBlock';
-import StickerCallout from '@/components/sections/StickerCallout';
 import SlantedMarquee from '@/components/sections/SlantedMarquee';
 import TiltConsentToast from '@/components/sections/TiltConsentToast';
 
@@ -26,7 +24,6 @@ export default function HeroParallaxSection() {
     setIsMobile('ontouchstart' in window || navigator.maxTouchPoints > 0);
   }, []);
 
-  // Parallax only moves pivmaster (point 8)
   const px = isMobile ? tilt.x : pointer.x;
   const py = isMobile ? tilt.y : pointer.y;
   const intensity = prefersReducedMotion ? 5 : 20;
@@ -40,12 +37,16 @@ export default function HeroParallaxSection() {
     setTiltEnabled(false);
   }, []);
 
+  const jokeHover = prefersReducedMotion
+    ? {}
+    : { whileHover: { scale: 1.08 }, transition: { type: 'spring' as const, stiffness: 300, damping: 20 } };
+
   return (
     <section
       ref={containerRef}
       className="relative w-full h-screen overflow-hidden"
     >
-      {/* ── Background: static, full screen (point 1, 8) ── */}
+      {/* ── Background: static, full screen ── */}
       <div className="absolute inset-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -65,7 +66,7 @@ export default function HeroParallaxSection() {
         }}
       />
 
-      {/* ── Pivmaster: parallax only on him, full screen height (point 7, 8) ── */}
+      {/* ── Pivmaster: parallax only on him ── */}
       <motion.div
         className="absolute z-[5] inset-0 pointer-events-none"
         animate={{
@@ -78,43 +79,61 @@ export default function HeroParallaxSection() {
         <img
           src="/images/pivmaster.png"
           alt="Пивмастер"
-          className="absolute bottom-0 right-0 h-full w-auto max-w-none object-contain object-right-bottom"
+          className="absolute bottom-10 right-[-90%] md:right-[0%] lg:right-[-5%] h-[95%] md:h-[90%] lg:h-[105%] w-auto max-w-none object-contain object-right-bottom"
         />
       </motion.div>
 
-      {/* ── Title block: z-index above pivmaster (point 4) ── */}
-      <div className="absolute z-20 top-[6%] left-[3%] md:top-[8%] md:left-[5%]">
-        <HeroTitleBlock
-          titleSegments={[
-            { text: 'Чисто ' },
-            { text: 'Крымская', highlight: true },
-            { text: ' Харизма' },
-          ]}
-          subtitle="Бар самообслуживания с юмором, в котором вкусно!"
+      {/* ── Logo plashka (logo1.png) ── */}
+      <motion.div
+        className="absolute z-20 top-[-2%] left-[0%] md:top-[-12%] md:left-[12%]"
+        initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero2/logo1.png"
+          alt="Чисто Крымская Харизма"
+          className="w-[420px] md:w-[420px] lg:w-[950px] h-auto"
+          style={{ filter: 'drop-shadow(0 4px 20px rgba(0,0,0,0.5))' }}
         />
-      </div>
+      </motion.div>
 
-      {/* ── Sticker right: "Одно пиво — не пиво!" (point 3 — swapped to right) ── */}
-      <StickerCallout
-        text="Одно пиво — не пиво!"
-        brushSrc="/images/hero2/brush_sticker-right.png"
-        className="right-[3%] bottom-[26%] md:right-[5%] md:bottom-[28%]"
-        rotate={3}
-        boldWord="не пиво!"
-        animDelay={0.8}
-      />
+      {/* ── Joke 1: "Одно пиво — не пиво!" (joke1.png) ── */}
+      <motion.div
+        className="absolute z-20 right-[0%] bottom-[15%] md:right-[12%] md:bottom-[2%] cursor-pointer"
+        initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.8, ease: 'easeOut' }}
+        {...jokeHover}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero2/joke1.png"
+          alt="Одно пиво — не пиво!"
+          className="w-[280px] md:w-[350px] lg:w-[580px] h-auto"
+          style={{ filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.5))' }}
+        />
+      </motion.div>
 
-      {/* ── Sticker left: "Мы любим наших официантов..." (point 3 — swapped to left) ── */}
-      <StickerCallout
-        text="Мы любим наших официантов, потому что это — вы!"
-        brushSrc="/images/hero2/brush-title.png"
-        className="left-[3%] bottom-[16%] md:left-[5%] md:bottom-[20%]"
-        rotate={-3}
-        boldWord="вы!"
-        animDelay={1.0}
-      />
+      {/* ── Joke 2: "Мы любим наших официантов..." (joke2.png) ── */}
+      <motion.div
+        className="absolute z-20 left-[2%] top-[25%] md:left-[8%] md:top-[30%] cursor-pointer"
+        initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 1.0, ease: 'easeOut' }}
+        {...jokeHover}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero2/joke2.png"
+          alt="Мы любим наших официантов, потому что это — вы!"
+          className="w-[270px] md:w-[350px] lg:w-[460px] h-auto"
+          style={{ filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.5))' }}
+        />
+      </motion.div>
 
-      {/* ── Slanted marquee ticker (point 2 — less slant) ── */}
+      {/* ── Slanted marquee ticker ── */}
       <SlantedMarquee fixedText={MARQUEE_FIXED} scrollText={MARQUEE_SCROLL} />
 
       {/* ── Tilt consent toast (mobile only) ── */}

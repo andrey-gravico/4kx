@@ -16,7 +16,7 @@ export default function SlantedMarquee({ fixedText, scrollText }: SlantedMarquee
 
   return (
     <div
-      className="absolute bottom-4 md:bottom-6 left-[-2%] right-[-2%] z-30 overflow-hidden pointer-events-none"
+      className="absolute bottom-4 md:bottom-6 left-0 right-0 md:left-[-2%] md:right-[-2%] z-30 overflow-hidden pointer-events-none"
       style={{ transform: 'rotate(-1deg)', transformOrigin: 'center bottom' }}
     >
       {/* SVG slanted bar background */}
@@ -35,7 +35,7 @@ export default function SlantedMarquee({ fixedText, scrollText }: SlantedMarquee
 
       <div className="relative py-3 md:py-4 flex items-center">
         {/* Fixed prefix */}
-        <span className="relative z-10 font-body font-extrabold text-sm md:text-base lg:text-lg text-white tracking-wide uppercase pl-4 pr-3 whitespace-nowrap flex-shrink-0">
+        <span className="relative z-10 font-body font-extrabold text-xs md:text-base lg:text-lg text-white tracking-wide uppercase pl-3 md:pl-4 pr-2 md:pr-3 whitespace-nowrap flex-shrink-0">
           {fixedText}
           <span className="ml-2 text-[#D4A843]">&bull;</span>
         </span>
@@ -58,10 +58,10 @@ export default function SlantedMarquee({ fixedText, scrollText }: SlantedMarquee
               },
             }}
           >
-            <span className="font-body font-bold text-sm md:text-base lg:text-lg text-[#D4A843] tracking-widest uppercase">
+            <span className="font-body font-bold text-xs md:text-base lg:text-lg text-[#D4A843] tracking-widest uppercase">
               {repeated}
             </span>
-            <span className="font-body font-bold text-sm md:text-base lg:text-lg text-[#D4A843] tracking-widest uppercase ml-4">
+            <span className="font-body font-bold text-xs md:text-base lg:text-lg text-[#D4A843] tracking-widest uppercase ml-4">
               {repeated}
             </span>
           </motion.div>
