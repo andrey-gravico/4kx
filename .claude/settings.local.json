@@ -16,7 +16,10 @@
       "Bash(timeout:*)",
       "Bash(ping:*)",
       "Bash(npx next dev --turbopack --port 3000)",
-      "mcp__Windows-MCP__Shell"
+      "mcp__Windows-MCP__Shell",
+      "mcp__Desktop_Commander__list_directory",
+      "mcp__Desktop_Commander__read_file",
+      "mcp__Desktop_Commander__get_file_info"
     ]
   }
 }

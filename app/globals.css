@@ -17,9 +17,9 @@
   --color-black: var(--black);
   --color-white: var(--white);
 
-  --font-heading: var(--font-bebas-neue);
-  --font-hero: var(--font-stalinist);
-  --font-body: var(--font-roboto);
+  --font-heading: var(--font-stick);
+  --font-hero: var(--font-stick);
+  --font-body: var(--font-nunito);
 }
 
 /* Grain noise SVG filter */
@@ -59,8 +59,19 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-/* Selection */
-::selection {
-  background: var(--sunset);
-  color: var(--white);
+/* Disable text/element selection globally */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Disable image dragging */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
 }

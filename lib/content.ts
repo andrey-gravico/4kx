@@ -1,3 +1,14 @@
+/* ── New parallax hero ── */
+export const heroParallax = {
+  title: 'Чисто Крымская Харизма',
+  subtitle: 'Бар самообслуживания с юмором, в котором вкусно!',
+  stickerLeft: 'Одно пиво — не пиво!',
+  stickerRight: 'Мы любим наших официантов, потому что это — вы!',
+  marquee:
+    'Каждую неделю вечеринка! \u25B6 DJ-сеты \u25B6 Турниры по пиву \u25B6 Стендап \u25B6 Караоке \u25B6 Квизы \u25B6 Матчи',
+};
+
+/* ── Steps section (old hero) ── */
 export const hero = {
   title: 'ЧКХ',
   subtitle: 'Чисто Крымская Харизма!',
@@ -9,26 +20,6 @@ export const hero = {
   ],
   locationButton: 'Где мы находимся',
   menuButton: 'Посмотреть меню',
-};
-
-export const manifest = {
-  heading: 'Мы не ресторан.',
-  lines: [
-    'Это бар у моря.',
-    'Без официантов.',
-    'Без пафоса.',
-    'С характером.',
-  ],
-};
-
-export const rules = {
-  heading: 'Правила ЧКХ',
-  cards: [
-    'Мы любим наших официантов. Потому что это вы.',
-    'Пей быстро. Лето не бесконечное.',
-    'Работает? Не трогай. Крымское правило.',
-    'Одно пиво — не пиво.',
-  ],
 };
 
 export const location = {
@@ -60,8 +51,7 @@ export const footer = {
 export const nav = {
   logo: 'ЧКХ',
   links: [
-    { label: 'О нас', href: '#manifest' },
-    { label: 'Правила', href: '#rules' },
+    { label: 'Как это работает', href: '#steps' },
     { label: 'Локация', href: '#location' },
     { label: 'Меню', href: '/menu' },
   ],

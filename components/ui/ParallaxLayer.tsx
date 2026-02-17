@@ -1,35 +1,40 @@
 'use client';
 
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 interface ParallaxLayerProps {
   children: React.ReactNode;
-  speed?: number;
+  /** Parallax intensity in px: higher = more movement */
+  depth: number;
+  /** Normalised pointer/tilt X value (-1 to 1) */
+  px: number;
+  /** Normalised pointer/tilt Y value (-1 to 1) */
+  py: number;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export default function ParallaxLayer({
   children,
-  speed = 0.3,
-  className,
+  depth,
+  px,
+  py,
+  className = '',
+  style,
 }: ParallaxLayerProps) {
-  const ref = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', `${speed * 100}%`]);
-
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  const intensity = prefersReducedMotion ? depth * 0.3 : depth;
 
   return (
-    <motion.div ref={ref} style={{ y }} className={className}>
+    <motion.div
+      className={className}
+      style={style}
+      animate={{
+        x: px * intensity,
+        y: py * intensity,
+      }}
+      transition={{ type: 'tween', ease: 'easeOut', duration: 0.3 }}
+    >
       {children}
     </motion.div>
   );
