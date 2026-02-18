@@ -10,14 +10,14 @@ interface SectionProps {
 export default function Section({
   children,
   id,
-  bg = 'bg-sand',
+  bg = 'bg-black',
   className,
 }: SectionProps) {
   return (
     <section
       id={id}
       className={cn(
-        'py-16 md:py-24 px-4',
+        'py-16 px-4',
         bg,
         className
       )}

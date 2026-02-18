@@ -8,8 +8,9 @@ interface TiltValues {
 }
 
 /**
- * Returns normalised tilt values from DeviceOrientation.
- * `enabled` must be set to true by user consent (iOS requires explicit permission).
+ * Returns normalised tilt values from DeviceOrientation (gyroscope).
+ * Works on both iOS (after requestPermission) and Android (no permission needed).
+ * `enabled` must be set to true — on iOS after user consent, on Android immediately.
  */
 export function useTiltParallax(enabled: boolean) {
   const [values, setValues] = useState<TiltValues>({ x: 0, y: 0 });
@@ -30,6 +31,8 @@ export function useTiltParallax(enabled: boolean) {
 
   useEffect(() => {
     if (!enabled) return;
+    if (typeof window === 'undefined') return;
+    if (typeof DeviceOrientationEvent === 'undefined') return;
 
     window.addEventListener('deviceorientation', handler, { passive: true });
     return () => {
@@ -39,25 +42,4 @@ export function useTiltParallax(enabled: boolean) {
   }, [enabled, handler]);
 
   return values;
-}
-
-/**
- * Request DeviceOrientation permission on iOS 13+.
- * Returns true if permission was granted.
- */
-export async function requestTiltPermission(): Promise<boolean> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const DOE = DeviceOrientationEvent as any;
-
-  if (typeof DOE.requestPermission === 'function') {
-    try {
-      const result = await DOE.requestPermission();
-      return result === 'granted';
-    } catch {
-      return false;
-    }
-  }
-
-  // Non-iOS — permission not required
-  return true;
 }

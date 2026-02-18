@@ -33,12 +33,23 @@ body {
   background: var(--sand);
   color: var(--black);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
 }
 
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

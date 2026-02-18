@@ -11,19 +11,18 @@ export const heroParallax = {
 /* ── Steps section (old hero) ── */
 export const hero = {
   title: 'ЧКХ',
-  subtitle: 'Чисто Крымская Харизма!',
-  tagline: 'Бар самообслуживания с юмором!',
+  tagline: 'Бар самообслуживания с юмором, в котором вкусно!',
   steps: [
-    { icon: '/icons/beer.png', number: '1', label: 'Заказал' },
-    { icon: '/icons/pizza.png', number: '2', label: 'Забрал' },
-    { icon: '/icons/rest.png', number: '3', label: 'Отдохнул' },
+    { icon: '/icons/beer.png', number: '1', label: 'Закажи' },
+    { icon: '/icons/pizza.png', number: '2', label: 'Забери' },
+    { icon: '/icons/rest.png', number: '3', label: 'Отдыхай' },
   ],
-  locationButton: 'Где мы находимся',
-  menuButton: 'Посмотреть меню',
+  locationButton: 'Где мы',
+  menuButton: 'Меню',
 };
 
 export const location = {
-  heading: 'Альфа на Омеге.',
+  heading: 'Мы - Альфа на Омеге.',
   lines: [
     'Бухта Омега.',
     'Прямо у пляжа.',

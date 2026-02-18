@@ -94,25 +94,16 @@ export default function HeroStepsSection() {
       <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-4 py-16 md:py-24 text-center">
         {/* Section heading (H3, not H1 — H1 is in new hero) */}
         <motion.h3
-          className="font-hero text-[2.5rem] md:text-[4rem] lg:text-[5.5rem] leading-[0.85] uppercase text-textured"
+          className="font-hero text-6xl lg:text-[9.5rem] leading-[0.85] uppercase text-textured"
           style={{ filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.8))' }}
           {...show(0)}
         >
           {hero.title}
         </motion.h3>
 
-        {/* Subtitle */}
-        <motion.p
-          className="font-hero text-xl md:text-3xl lg:text-4xl uppercase mt-2 md:mt-3 text-textured"
-          style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.7))' }}
-          {...show(0.2)}
-        >
-          {hero.subtitle}
-        </motion.p>
-
         {/* Tagline */}
         <motion.p
-          className="font-body text-base md:text-xl lg:text-2xl text-white/80 mt-1 md:mt-2"
+          className="font-body text-lg lg:text-2xl text-white/80 mt-3 md:mt-5"
           style={{ textShadow: '0 1px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.8)' }}
           {...show(0.4)}
         >

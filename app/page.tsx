@@ -7,8 +7,8 @@ import Footer from '@/components/Footer';
 export default function Home() {
   return (
     <main>
-      <HeroParallaxSection />
       <HeroStepsSection />
+      <HeroParallaxSection />
       <Location />
       <Opening />
       <Footer />
