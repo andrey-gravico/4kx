@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 interface SlantedMarqueeProps {
@@ -10,22 +10,22 @@ interface SlantedMarqueeProps {
   scrollText: string;
 }
 
-export default function SlantedMarquee({ fixedText, scrollText }: SlantedMarqueeProps) {
+const SlantedMarquee = memo(function SlantedMarquee({ fixedText, scrollText }: SlantedMarqueeProps) {
   const prefersReducedMotion = useReducedMotion();
   const [scrollDuration] = useState(() => {
     if (typeof window === 'undefined') {
       return 50;
     }
 
-    return window.innerWidth < 768 ? 25 : 50;
+    return window.innerWidth < 768 ? 4 : 50;
   });
 
   // Repeat scrolling text for seamless loop
-  const repeated = Array(8).fill(scrollText).join('  \u2022  ');
+  const repeated = `${Array(8).fill(scrollText).join('  \u2022  ')}  \u2022  `;
 
   return (
     <div
-      className="absolute bottom-7 md:bottom-6 left-0 right-0 md:left-[-2%] md:right-[-2%] z-30 overflow-hidden pointer-events-none"
+      className="absolute bottom-20 lg:bottom-10 left-0 right-0 lg:left-[-2%] lg:right-[-2%] z-30 overflow-hidden pointer-events-none"
       style={{ transform: 'rotate(-1deg)', transformOrigin: 'center bottom', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
       {/* SVG slanted bar background */}
@@ -70,7 +70,7 @@ export default function SlantedMarquee({ fixedText, scrollText }: SlantedMarquee
             <span className="font-body font-bold text-xs md:text-base lg:text-lg text-[#D4A843] tracking-widest uppercase">
               {repeated}
             </span>
-            <span className="font-body font-bold text-xs md:text-base lg:text-lg text-[#D4A843] tracking-widest uppercase ml-4">
+            <span className="font-body font-bold text-xs md:text-base lg:text-lg text-[#D4A843] tracking-widest uppercase">
               {repeated}
             </span>
           </motion.div>
@@ -78,5 +78,6 @@ export default function SlantedMarquee({ fixedText, scrollText }: SlantedMarquee
       </div>
     </div>
   );
-}
+});
 
+export default SlantedMarquee;

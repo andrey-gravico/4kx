@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { usePointerParallax } from '@/lib/hooks/usePointerParallax';
 import { useTiltParallax } from '@/lib/hooks/useTiltParallax';
 import SlantedMarquee from '@/components/sections/SlantedMarquee';
+import MenuModal from '@/components/sections/MenuModal';
 
 const MARQUEE_FIXED = 'Каждую неделю вечеринка!';
 const MARQUEE_SCROLL =
@@ -14,6 +15,7 @@ export default function HeroParallaxSection() {
   const containerRef = useRef<HTMLElement>(null);
   const pointer = usePointerParallax(containerRef);
   const prefersReducedMotion = useReducedMotion();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isTouchDevice =
     typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
@@ -41,9 +43,11 @@ export default function HeroParallaxSection() {
   return (
     <section
       ref={containerRef}
+      id="hero-parallax"
       className="relative w-full h-screen md:h-[100dvh] overflow-hidden touch-pan-y"
     >
-      {/* ── Background: static, full screen ── */}
+      {/* ── Фон ── */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/images/hero2mobile.png"
         alt="Hero mobile background"
@@ -58,7 +62,7 @@ export default function HeroParallaxSection() {
         />
       </div>
 
-      {/* ── Vignette overlay ── */}
+      {/* ── Виньетка поверх фона ── */}
       <div
         aria-hidden="true"
         className="absolute inset-0 z-[1] pointer-events-none"
@@ -68,7 +72,7 @@ export default function HeroParallaxSection() {
         }}
       />
 
-      {/* ── Pivmaster: parallax only on him ── */}
+      {/* ── Pivmaster: МУЖЧИНА С ПИВОМ (десктоп) ── */}
       <motion.div
         className="absolute z-[5] inset-0 pointer-events-none hidden md:block"
         animate={{
@@ -85,9 +89,9 @@ export default function HeroParallaxSection() {
         />
       </motion.div>
 
-      {/* ── Logo plashka (logo1.png) ── */}
+      {/* ── ЧИСТО КРЫМСКАЯ ХАРИЗМА ПЛАШКА (logo1.png) ── */}
       <motion.div
-        className="absolute z-20 top-[-2%] left-[0%] md:top-[-12%] md:left-[12%]"
+        className="absolute z-20 top-[-3%] left-[-10%] lg:top-[-12%] lg:left-[0%]"
         initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -99,16 +103,11 @@ export default function HeroParallaxSection() {
           className="w-[420px] md:w-[420px] lg:w-[950px] h-auto"
           style={{ filter: 'drop-shadow(0 4px 20px rgba(0,0,0,0.5))' }}
         />
-        <p
-          className="font-body text-black text-center font-bold lg:opacity-85 text-xl lg:text-3xl mt-[-20%] lg:mt-[-20%] ml-2 lg:ml-[17%] max-w-[360px]  lg:max-w-[700px] mx-auto rotate-357"
-        >
-          Бар самообслуживания с юмором,<br/> в котором вкусно!
-        </p>
       </motion.div>
 
       {/* ── Joke 1: "Одно пиво — не пиво!" (joke1.png) ── */}
       <motion.div
-        className="absolute z-20 right-[0%] bottom-[15%] md:right-[12%] md:bottom-[2%] cursor-pointer"
+        className="absolute z-20 right-[-6%] bottom-[20%] lg:right-[12%] lg:bottom-[2%] cursor-pointer"
         initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.8, ease: 'easeOut' }}
@@ -118,14 +117,14 @@ export default function HeroParallaxSection() {
         <img
           src="/images/hero2/joke1.png"
           alt="Одно пиво — не пиво!"
-          className="w-[280px] md:w-[350px] lg:w-[580px] h-auto"
+          className="w-[250px] lg:w-[580px] h-auto"
           style={{ filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.5))' }}
         />
       </motion.div>
 
       {/* ── Joke 2: "Мы любим наших официантов..." (joke2.png) ── */}
       <motion.div
-        className="absolute z-20 left-[2%] top-[27%] md:left-[8%] md:top-[40%] cursor-pointer"
+        className="absolute z-20 left-[0%] top-[17%] lg:left-[15%] lg:top-[25%] cursor-pointer"
         initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 1.0, ease: 'easeOut' }}
@@ -135,13 +134,26 @@ export default function HeroParallaxSection() {
         <img
           src="/images/hero2/joke2.png"
           alt="Мы любим наших официантов, потому что это — вы!"
-          className="w-[270px] md:w-[350px] lg:w-[460px] h-auto"
+          className="w-[270px] lg:w-[480px] h-auto"
           style={{ filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.5))' }}
         />
       </motion.div>
 
-      {/* ── Slanted marquee ticker ── */}
+      {/* ── БЕГУЩАЯ СТРОКА> ── */}
+      <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+        <motion.button
+          type="button"
+          className="pointer-events-auto whitespace-nowrap px-6 py-3 border-2 border-[#D4A843] bg-black/90 text-white font-heading text-xl lg:text-4xl uppercase tracking-wide shadow-[0_8px_24px_rgba(0,0,0,0.45)]"
+          onClick={() => setIsMenuOpen(true)}
+          whileHover={prefersReducedMotion ? {} : { scale: 1.03 }}
+          whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+        >
+          Наше меню
+        </motion.button>
+      </div>
+
       <SlantedMarquee fixedText={MARQUEE_FIXED} scrollText={MARQUEE_SCROLL} />
+      <MenuModal isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
     </section>
   );

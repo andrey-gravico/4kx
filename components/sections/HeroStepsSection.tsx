@@ -65,7 +65,10 @@ export default function HeroStepsSection() {
     <section
       ref={sectionRef}
       id="steps"
-      className="relative w-full min-h-screen overflow-hidden flex flex-col"
+      className="relative w-full min-h-screen overflow-hidden flex flex-col -mt-[env(safe-area-inset-top)]"
+      style={{
+        minHeight: 'calc(100dvh + env(safe-area-inset-top, 0px))',
+      }}
     >
       {/* ── Fullscreen background with parallax ── */}
       <motion.div
@@ -76,7 +79,7 @@ export default function HeroStepsSection() {
         <img
           src="/images/hero.png"
           alt="ЧКХ — интерьер бара"
-          className="absolute inset-0 w-full h-[120%] object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
       </motion.div>
 
@@ -112,7 +115,7 @@ export default function HeroStepsSection() {
 
         {/* ── Steps ── */}
         <motion.div
-          className="mt-8 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 lg:gap-12"
+          className="mt-12 flex flex-col lg:flex-row items-center justify-center lg:gap-6"
           {...show(0.6)}
         >
           {hero.steps.map((step, i) => (
@@ -128,12 +131,12 @@ export default function HeroStepsSection() {
                     width={300}
                     height={300}
                     unoptimized
-                    className="w-24 h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 object-contain"
+                    className="w-24 h-24 lg:w-36 lg:h-36 object-contain"
                     style={{ filter: 'drop-shadow(0 6px 24px rgba(0,0,0,0.7)) drop-shadow(0 2px 6px rgba(0,0,0,0.9))' }}
                   />
                 </motion.div>
                 <p
-                  className="font-heading text-4xl md:text-6xl lg:text-7xl text-white text-center"
+                  className="font-heading text-2xl lg:text-4xl text-white text-center"
                   style={{
                     textShadow: '0 6px 24px rgba(0,0,0,1), 0 3px 12px rgba(0,0,0,1), 0 1px 4px rgba(0,0,0,1)',
                   }}
@@ -153,7 +156,7 @@ export default function HeroStepsSection() {
                     width={300}
                     height={200}
                     unoptimized
-                    className="hidden md:block w-36 h-24 lg:w-48 lg:h-32 object-contain"
+                    className="hidden md:block w-48 h-26 object-contain"
                     style={{ filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.7)) drop-shadow(0 2px 6px rgba(0,0,0,0.8))' }}
                   />
                   <Image
@@ -173,17 +176,17 @@ export default function HeroStepsSection() {
 
         {/* ── Buttons ── */}
         <motion.div
-          className="mt-8 md:mt-35 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-60 px-2"
+          className="mt-8 md:mt-35 flex flex-col sm:flex-row items-center justify-center base:gap-2 lg:gap-60 px-2"
           {...show(1.0)}
         >
           <a href="#location" className="relative group block">
             <div
-              className="relative w-[200px] md:w-[260px] lg:w-[350px] aspect-[2.5/1] transition-transform duration-200 group-hover:scale-[1.04] group-active:scale-[0.97]"
+              className="relative w-[250px] lg:w-[350px] aspect-[2.5/1] transition-transform duration-200 group-hover:scale-[1.04] group-active:scale-[0.97]"
               style={{ filter: 'drop-shadow(0 8px 28px rgba(0,0,0,0.6))' }}
             >
               <Image src="/icons/button1.png" alt="" fill unoptimized className="object-contain" />
               <span
-                className="absolute inset-0 flex items-center justify-center font-heading font-medium text-xl md:text-2xl lg:text-[26px] uppercase text-black px-2"
+                className="absolute inset-0 flex items-center justify-center font-body font-bold text-xl md:text-2xl lg:text-[26px] uppercase text-black px-2"
                 style={{ textShadow: '0 1px 3px rgba(255,255,255,0.4)' }}
               >
                 {hero.locationButton}
@@ -191,22 +194,25 @@ export default function HeroStepsSection() {
             </div>
           </a>
 
-          <a href="/menu" className="relative group block">
+          <a href="#hero-parallax" className="relative group block">
             <div
-              className="relative w-[200px] md:w-[260px] lg:w-[350px] aspect-[2.5/1] transition-transform duration-200 group-hover:scale-[1.04] group-active:scale-[0.97]"
+              className="relative w-[250px] lg:w-[350px] aspect-[2.5/1] transition-transform duration-200 group-hover:scale-[1.04] group-active:scale-[0.97]"
               style={{ filter: 'drop-shadow(0 8px 28px rgba(0,0,0,0.6))' }}
             >
               <Image src="/icons/button2.png" alt="" fill unoptimized className="object-contain" />
               <span
-                className="absolute inset-0 flex items-center justify-center font-heading text-xl md:text-2xl lg:text-[26px] uppercase text-white px-2"
+                className="absolute inset-0 flex items-center justify-center font-body font-bold text-xl md:text-2xl lg:text-[26px] uppercase text-white px-2"
                 style={{ textShadow: '0 2px 6px rgba(0,0,0,0.7)' }}
               >
                 {hero.menuButton}
               </span>
             </div>
           </a>
+
         </motion.div>
       </div>
     </section>
   );
 }
+
+

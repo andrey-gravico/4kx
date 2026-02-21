@@ -30,7 +30,7 @@ svg.grain-filter {
 }
 
 body {
-  background: var(--sand);
+  background: #000000;
   color: var(--black);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
   overflow-x: clip;
