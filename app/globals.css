@@ -52,9 +52,45 @@ body {
   padding: 0;
 }
 
+.magnet-scroll {
+  scroll-snap-type: y proximity;
+}
+
+.magnet-section {
+  position: relative;
+  min-height: 100dvh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  isolation: isolate;
+  --magnet-dim: 0;
+}
+
+.magnet-section-top {
+  scroll-snap-align: start;
+}
+
+.magnet-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: var(--magnet-dim);
+  pointer-events: none;
+  z-index: 40;
+  transition: opacity 220ms ease-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .magnet-scroll {
+    scroll-snap-type: none;
+  }
+
+  .magnet-section {
+    scroll-snap-stop: normal;
   }
 }
 
