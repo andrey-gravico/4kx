@@ -17,12 +17,12 @@ export default function Section({
     <section
       id={id}
       className={cn(
-        'py-16 px-4',
+        'w-full h-full overflow-hidden',
         bg,
         className
       )}
     >
-      <div className="max-w-6xl mx-auto">{children}</div>
+      <div className="h-full mx-auto">{children}</div>
     </section>
   );
 }

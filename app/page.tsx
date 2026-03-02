@@ -1,41 +1,42 @@
-import HeroParallaxSection from '@/components/sections/HeroParallaxSection';
-import HeroStepsSection from '@/components/sections/HeroStepsSection';
-import GalleryStoriesSection from '@/components/sections/GalleryStoriesSection';
+import Hero from '@/components/sections/Hero';
+import Menu from '@/components/sections/Menu';
+import Pizza from '@/components/sections/Pizza';
+import Gallery from '@/components/sections/Gallery';
 import Location from '@/components/Location';
-import Opening from '@/components/Opening';
 import Footer from '@/components/Footer';
-import ScrollMagnetEffects from '@/components/ScrollMagnetEffects';
+import SwipePageController from '@/components/SwipePageController';
 
 export default function Home() {
   return (
-    <main className="magnet-scroll">
-      <ScrollMagnetEffects />
+    <main className="page-root">
+      <SwipePageController />
 
       <div
-        className="magnet-section magnet-section-top"
-        data-magnet-section
-        data-magnet-align="start"
+        className="page-section page-section-top"
+        data-page-section
+        data-page-index="0"
+        data-section-kind="hero"
       >
-        <HeroStepsSection />
+        <Hero />
       </div>
 
-      <div className="magnet-section" data-magnet-section>
-        <HeroParallaxSection />
+      <div className="page-section" data-page-section data-page-index="1" data-section-kind="hero">
+        <Menu />
       </div>
 
-      <div className="magnet-section" data-magnet-section>
-        <GalleryStoriesSection />
+      <div className="page-section" data-page-section data-page-index="2" data-section-kind="content">
+        <Pizza />
       </div>
 
-      <div className="magnet-section" data-magnet-section>
+      <div className="page-section" data-page-section data-page-index="3" data-section-kind="gallery">
+        <Gallery />
+      </div>
+
+      <div className="page-section" data-page-section data-page-index="4" data-section-kind="content">
         <Location />
       </div>
 
-      <div className="magnet-section" data-magnet-section>
-        <Opening />
-      </div>
-
-      <div className="magnet-section" data-magnet-section>
+      <div className="page-section" data-page-section data-page-index="5" data-section-kind="footer">
         <Footer />
       </div>
     </main>

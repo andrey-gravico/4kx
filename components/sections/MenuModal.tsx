@@ -183,8 +183,7 @@ function ModalContent({ isMobile, closeButtonRef, onClose }: ModalContentProps) 
 
           {hasStoryError ? (
             <div className="absolute inset-0 z-20 flex items-center justify-center text-white text-center px-6">
-              Не удалось загрузить меню
-            </div>
+              Не удалось загрузить меню</div>
           ) : (
             <div className="relative w-full h-full">
               <Image
@@ -236,3 +235,4 @@ function ModalContent({ isMobile, closeButtonRef, onClose }: ModalContentProps) 
     </motion.div>
   );
 }
+

@@ -33,6 +33,7 @@ body {
   background: #000000;
   color: var(--black);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  overflow: hidden;
   overflow-x: clip;
   overscroll-behavior-x: none;
   overscroll-behavior-y: none;
@@ -50,47 +51,58 @@ html,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
-.magnet-scroll {
-  scroll-snap-type: y proximity;
+:root {
+  --fit-scale: 1;
+  --page-dim-max: 0.28;
+  --page-dim-duration: 220ms;
 }
 
-.magnet-section {
+.page-root {
   position: relative;
-  min-height: 100dvh;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-  isolation: isolate;
-  --magnet-dim: 0;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
+  scroll-snap-type: y mandatory;
 }
 
-.magnet-section-top {
+.page-section {
+  position: relative;
+  height: 100dvh;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+  isolation: isolate;
+  --page-dim: 0;
 }
 
-.magnet-section::after {
+.page-section-top {
+  align-items: flex-start;
+}
+
+.page-section::after {
   content: '';
   position: absolute;
   inset: 0;
   background: #000;
-  opacity: var(--magnet-dim);
+  opacity: var(--page-dim);
   pointer-events: none;
   z-index: 40;
-  transition: opacity 220ms ease-out;
+  transition: opacity var(--page-dim-duration) ease-out;
+}
+
+.page-fit-content {
+  transform: scale(var(--fit-scale));
+  transform-origin: center center;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .magnet-scroll {
-    scroll-snap-type: none;
-  }
-
-  .magnet-section {
-    scroll-snap-stop: normal;
   }
 }
 

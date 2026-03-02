@@ -25,12 +25,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'ЧКХ — Чисто Крымская Харизма | Бар на Омеге',
-  description:
-    'Бар самообслуживания у моря. Пиво, пицца, характер. Скоро открытие.',
+  description: 'Бар самообслуживания у моря. Пиво, пицца, характер. Скоро открытие.',
   openGraph: {
     title: 'ЧКХ — Чисто Крымская Харизма | Бар на Омеге',
-    description:
-      'Бар самообслуживания у моря. Пиво, пицца, характер. Скоро открытие.',
+    description: 'Бар самообслуживания у моря. Пиво, пицца, характер. Скоро открытие.',
     type: 'website',
     locale: 'ru_RU',
   },
@@ -43,9 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body
-        className={`${troubleside.variable} ${neucha.variable} antialiased`}
-      >
+      <body className={`${troubleside.variable} ${neucha.variable} antialiased`}>
         <ScrollProgress />
         {children}
       </body>
