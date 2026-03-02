@@ -116,14 +116,6 @@ export default function Pizza() {
             <p className="font-body text-[clamp(0.92rem,1.5vw,1.2rem)] text-sand/90">
               {pizzaSection.subline}
             </p>
-            <div className="mx-auto mt-2 w-full max-w-3xl rounded-md border border-sunset/70 bg-black/70 px-3 py-2 md:px-4">
-              <p className="font-heading text-[clamp(0.95rem,1.6vw,1.35rem)] uppercase text-sand">
-                {pizzaSection.proofTitle}
-              </p>
-              <p className="font-body text-[clamp(0.74rem,1.1vw,0.92rem)] text-white/85 line-clamp-1">
-                {pizzaSection.proofText}
-              </p>
-            </div>
           </header>
 
           {isMobile ? (
